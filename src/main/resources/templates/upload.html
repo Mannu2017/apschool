@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<title>KARVY AP School Data</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link rel="shortcut icon" th:href="@{/img/favicon.ico}" />
+	 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" /> 
+	 <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	
+	<script type="text/javascript" th:inline="javascript">
+	/*<![CDATA[*/
+			/*]]>*/
+	</script>
+	
+</head>
+<body>
+	<header class="site-header">
+         <nav class="navbar navbar-default">
+         	<div class="container">
+       		<a th:href="@{/}" class="navbar-brand">
+			<img th:src="@{/img/karlogo.png}" alt="Post"></img>
+		</a>
+		<ul class="nav navbar-nav main-navbar-nav">
+			<li ><a th:href="@{/home}" class="btn-block" role="button" style="color:black">Report</a></li>
+			<li class="active"><a th:href="@{/upload}" class="btn-block" role="button" style="color:black"><b>Upload</b></a></li>
+		</ul>
+ 	</div>
+         </nav>
+	</header>
+	<div class="col-sm-12">
+	<div class="col-sm-4"></div>
+		<form method="POST" th:action="@{/upload}"  enctype="multipart/form-data">
+		<input class="btn" type="file" name="file" />
+		<div class="col-sm-4"></div> 
+		<button name="getData" type="Submit" >Submit</button>
+		<span th:utext="${message}" style="color: BLUE"></span>
+		
+	    </form>
+	    </div>
+	    <div th:if="${head}">
+	<div class="col-sm-4"></div>   	
+	<div class="hero_content">
+	  <div class="container">
+	   <div class="row">
+	    <div class="col-sm-12">
+		  <h1>Karvy Data Management Services Limited</h1>
+	   	<h2>Business Solutions for Growing Your Business</h2>
+	      </div>
+	   </div>
+	 </div>
+	 </div>
+	</div>
+	<br></br>
+		<br></br>
+	
+	    <div th:if="${report}" class="table-responsive-vertical shadow-z-1">
+	    	<table  class="table table-hover table-mc-light-blue" >
+      <thead>
+        <tr >
+          <th>SlNo</th>
+          <th>District</th>
+          <th>Location</th>
+          <th>HostelName</th>
+          <th>RegisteredEmp</th>
+          <th>RegisteredStudent</th>
+          <th>ActiveEmp</th>
+          <th>ActiveStudent</th>
+          <th>Date</th>
+          <th>EmpPresent</th>
+          <th>StudentPresent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:each="ackd : ${schoolDatas}">
+	<tr>
+		<td th:text="${ackd.slno}"></td>
+		<td th:text="${ackd.district}"></td>
+		<td th:text="${ackd.Location}"></td>
+		<td th:text="${ackd.HostelName}"></td>
+		<td th:text="${ackd.RegisteredEmp}"></td>
+		<td th:text="${ackd.RegisteredStu}"></td>
+		<td th:text="${ackd.ActiveEmp}"></td>
+		<td th:text="${ackd.ActiveStu}"></td>
+		<td th:text="${ackd.Date}"></td>
+		<td th:text="${ackd.EmpPresent}"></td>
+		<td th:text="${ackd.StuPresent}"></td>	
+	</tr>
+	</th:block>
+      </tbody> 
+    </table>
+		</div> 
+</body>
+</html>
